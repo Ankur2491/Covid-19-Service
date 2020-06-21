@@ -44,6 +44,15 @@ app.get('/countryData/:country',function(req,res){
   })
 });
 
+app.get('/historicalData/:country',function(req,res){
+  let country = req.params.country;
+  request(`https://corona.lmao.ninja/v2/historical/${country}?lastdays=180`,(error,response,body)=>{
+    if(!error && response.statusCode == 200){
+      res.send(body);
+    }
+  })
+});
+
 // error handler
 // app.use(function(err, req, res, next) {
 //   // set locals, only providing error in development
